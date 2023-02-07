@@ -15,7 +15,7 @@ const isPhantomInstalled = window.phantom?.solana?.isPhantom
       const provider = getProvider(); // see "Detecting the Provider"
       try {
         console.log(walletAddress());
-        const resp = await provider.request({method:"connect"});
+        const resp = await provider.connect();
         console.log(walletAddress());
         var AddrressWallet= resp.publicKey.toString();
         // 26qv4GCcx98RihuK3c4T6ozB3J7L6VwCuFVc7Ta2A3Uo
