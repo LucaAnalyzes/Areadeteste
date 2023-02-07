@@ -6,12 +6,6 @@
     <title>Unity WebGL Player | LakeaMan</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-    <script src="index.js"></script>
-    <script src="https://unpkg.com/web3@latest/dist/web3.min.js"></script>
-    
-    
-
-      
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -30,8 +24,6 @@
       </div>
     </div>
     <script>
-
-      var UI;
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
       var loadingBar = document.querySelector("#unity-loading-bar");
@@ -64,11 +56,11 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/teste tutorial coneção.loader.js";
+      var loaderUrl = buildUrl + "/Jogo Web.loader.js";
       var config = {
-        dataUrl: buildUrl + "/teste tutorial coneção.data",
-        frameworkUrl: buildUrl + "/teste tutorial coneção.framework.js",
-        codeUrl: buildUrl + "/teste tutorial coneção.wasm",
+        dataUrl: buildUrl + "/Jogo Web.data",
+        frameworkUrl: buildUrl + "/Jogo Web.framework.js",
+        codeUrl: buildUrl + "/Jogo Web.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Vinicius",
         productName: "LakeaMan",
@@ -113,7 +105,6 @@
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
-          UI = unityInstance;
           loadingBar.style.display = "none";
           fullscreenButton.onclick = () => {
             unityInstance.SetFullscreen(1);
