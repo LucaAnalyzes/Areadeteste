@@ -6,6 +6,11 @@
     <title>Unity WebGL Player | LakeaMan</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <style>
+    body{
+      background-color: black;
+    }
+    </style>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -160,6 +165,7 @@
         mygameInstance.SendMessage('BlockManager', 'adminDetails');
         document.getElementById("Conectar").disabled = true;
         document.getElementById("Conectar").style.backgroundColor = "#A9A9A9";
+        mygameInstance.SendMessage('BlockManager', 'walletAdd',AddrressWallet);
       } catch (err) {
         // { code: 4001, message: 'User rejected the request.' }
       }
@@ -177,10 +183,10 @@
     setTimeout(()=> {connect()},2000);
   
     
-        
+    console.log()    
         
       }
-      
+    
     </script>
   </body>
 </html>
