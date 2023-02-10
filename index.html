@@ -6,11 +6,6 @@
     <title>Unity WebGL Player | LakeaMan</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-    <style>
-    body{
-      background-color: black;
-    }
-    </style>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -61,11 +56,11 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/Jogo Web2.loader.js";
+      var loaderUrl = buildUrl + "/Jogo Web.loader.js";
       var config = {
-        dataUrl: buildUrl + "/Jogo Web2.data",
-        frameworkUrl: buildUrl + "/Jogo Web2.framework.js",
-        codeUrl: buildUrl + "/Jogo Web2.wasm",
+        dataUrl: buildUrl + "/Jogo Web.data",
+        frameworkUrl: buildUrl + "/Jogo Web.framework.js",
+        codeUrl: buildUrl + "/Jogo Web.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Vinicius",
         productName: "LakeaMan",
@@ -138,55 +133,29 @@
       
       
       </style>
-    <button class="button" id="Conectar" onclick="conectado()">Connect</button>
+    
+    
     <script>
-      function conectado(){
-        const isPhantomInstalled = window.phantom?.solana?.isPhantom 
-    const getProvider = () => {
-      if ('phantom' in window) {
-        const provider = window.phantom?.solana;
-    
-        if (provider?.isPhantom) {
-          return provider;
-        }
-      }
-    
-      window.open('https://phantom.app/', '_blank');
-    };
-    
-    const connect = async () => {
-      const provider = getProvider(); // see "Detecting the Provider"
-      try {
-        console.log(walletAddress());
-        const resp = await provider.connect();
-        console.log(walletAddress());
-        var AddrressWallet= resp.publicKey.toString();
-        // 26qv4GCcx98RihuK3c4T6ozB3J7L6VwCuFVc7Ta2A3Uo
-        mygameInstance.SendMessage('BlockManager', 'adminDetails');
-        document.getElementById("Conectar").disabled = true;
-        document.getElementById("Conectar").style.backgroundColor = "#A9A9A9";
-        mygameInstance.SendMessage('BlockManager', 'walletAdd',AddrressWallet);
-      } catch (err) {
-        // { code: 4001, message: 'User rejected the request.' }
-      }
-    };
-    
-    const walletAddress = () => {
-        const provider = getProvider();
-        try {
-            return provider.publicKey.toBase58();
-        } catch (err) {
-            return '';
-        }
-    }
+      const urlParams = new URLSearchParams(window.location.search);
+      const mode = urlParams.get('mode') || 'normal';
 
-    setTimeout(()=> {connect()},2000);
-  
-    
-    console.log()    
-        
+      const env = {
+          builderUrl: 'https://api.lakea.dev/v1',
+          gameId: 'a3372102-608c-48ef-b96c-bcb46249d15b',
+          coinId: '2fdcee3c-640e-47be-a9e1-748da0f1dccf',
+          levelTemplateId1: '16dd0f05-5580-4d85-8b5b-43c9e815b673',
+          levelTemplateId2: '8e33b4ac-ce30-43b5-9fc3-d8ed9d07b963',
+          levelTemplateId3: 'c9f5d4a9-bcb9-47ac-b854-c261cb5f5a54',
+          levelTemplateId4: '57cced3e-1e43-4e0d-bbb6-03b1a5cec758',
+          
       }
-    
+
+      const storedToken = window.localStorage.getItem('pacAuthToken');
+      const token = window.prompt("Insert Builder auth token", storedToken || '');
+      window.localStorage.setItem('pacAuthToken', token || storedToken);
     </script>
+    
+    <script src="lakea-builder.js"></script>
+    <script src="wallet.js"></script>
   </body>
 </html>
