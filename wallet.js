@@ -21,8 +21,7 @@ const isPhantomInstalled = window.phantom?.solana?.isPhantom
         
         // 26qv4GCcx98RihuK3c4T6ozB3J7L6VwCuFVc7Ta2A3Uo
         mygameInstance.SendMessage('BlockManager', 'adminDetails');
-        document.getElementById("Conectar").disabled = true;
-        document.getElementById("Conectar").style.backgroundColor = "#A9A9A9";
+        
         mygameInstance.SendMessage('BlockManager', 'walletAdd',AddrressWallet);
       } catch (err) {
         // { code: 4001, message: 'User rejected the request.' }
